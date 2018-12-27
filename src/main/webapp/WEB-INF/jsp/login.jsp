@@ -92,8 +92,8 @@
     <div class="tab_box">
         <!-- 学生登录开始 -->
         <div>
-            <div class="stu_error_box"></div>
-            <form action="<%=basePath%>/user/userLogin.action" id="login-form" method="post" class="stu_login_error">
+            <div class="stu_error_box" hidden></div>
+            <form action="<%=basePath%>/user/userLogin.do" id="login-form" method="post" class="stu_login_error">
                 <div id="username">
                     <label>账&nbsp;&nbsp;&nbsp;号：</label>
                     <input type="text" id="stu_username_hide" name="username" value="输入账号" nullmsg="账号不能为空！"
@@ -180,23 +180,6 @@
             drawDot(canvas, context);
         }
         convertCanvasToImage(canvas);
-
-        // 点击提交进行验证
-        /*$("#btn_submit").click(function(e) {
-            var newRand = rand.join('').toUpperCase();
-
-            //下面就是判断是否==的代码，无需解释
-            var oValue = $('#stu_code_hide').val().toUpperCase();
-            if (oValue == 0) {
-                alert('请输入验证码');
-            } else if (oValue != newRand) {
-                alert('验证码不正确，请重新输入');
-                oValue = ' ';
-            } else {
-                //提交表单数据
-                window.open('http://www.baidu.com', '_self');
-            }
-        });*/
     }
 
     // 随机线
@@ -240,7 +223,7 @@
         //下面就是判断是否==的代码，无需解释
         var oValue = $('#stu_code_hide').val().toUpperCase();
 
-        if(status == "密码验证通过！"){
+        if(status == "密码验证通过！" || status == "status: 200; statusText: OK"){
             console.log(status);
             if (oValue == 0) {
                 alert('请输入验证码');
@@ -248,7 +231,7 @@
                 alert('验证码不正确，请重新输入');
                 oValue = ' ';
             } else {
-                $("#login-form").submit();
+                document.getElementById("login-form").submit();
             }
         }
     });
