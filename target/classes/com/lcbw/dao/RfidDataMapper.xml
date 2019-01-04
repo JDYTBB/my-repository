@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcbw.dao.RfidDataMapper">
+  <resultMap id="BaseResultMap" type="com.lcbw.pojo.RfidData">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rfid_num" jdbcType="VARCHAR" property="rfidNum" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="hour" jdbcType="VARCHAR" property="hour" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="person_number" jdbcType="VARCHAR" property="personNumber" />
+    <result column="mileage" jdbcType="VARCHAR" property="mileage" />
+    <result column="track_bed_type" jdbcType="VARCHAR" property="trackBedType" />
+    <result column="fastener_type" jdbcType="VARCHAR" property="fastenerType" />
+    <result column="L" jdbcType="VARCHAR" property="l" />
+    <result column="I" jdbcType="VARCHAR" property="i" />
+    <result column="H" jdbcType="VARCHAR" property="h" />
+    <result column="temperature" jdbcType="VARCHAR" property="temperature" />
+    <result column="expansion1" jdbcType="VARCHAR" property="expansion1" />
+    <result column="expansion2" jdbcType="VARCHAR" property="expansion2" />
+    <result column="expansion3" jdbcType="VARCHAR" property="expansion3" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lcbw.pojo.RfidData">
+    <result column="Q" jdbcType="LONGVARCHAR" property="q" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rfid_num, year, month, date, hour, time, person_number, mileage, track_bed_type, 
+    fastener_type, L, I, H, temperature, expansion1, expansion2, expansion3
+  </sql>
+  <sql id="Blob_Column_List">
+    Q
+  </sql>
+  <select id="selectLabelDataByYear" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    ,
+    <include refid="Blob_Column_List" />
+    FROM rfid_data
+    WHERE year = '2018' AND rfid_num = '0001'
+  </select>
+  <select id="selectByExampleWithBLOBs" parameterType="com.lcbw.pojo.RfidDataExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rfid_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.lcbw.pojo.RfidDataExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rfid_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rfid_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from rfid_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lcbw.pojo.RfidDataExample">
+    delete from rfid_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lcbw.pojo.RfidData">
+    insert into rfid_data (id, rfid_num, year, 
+      month, date, hour, 
+      time, person_number, mileage, 
+      track_bed_type, fastener_type, L, 
+      I, H, temperature, 
+      expansion1, expansion2, expansion3, 
+      Q)
+    values (#{id,jdbcType=BIGINT}, #{rfidNum,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, 
+      #{month,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, #{hour,jdbcType=VARCHAR}, 
+      #{time,jdbcType=VARCHAR}, #{personNumber,jdbcType=VARCHAR}, #{mileage,jdbcType=VARCHAR}, 
+      #{trackBedType,jdbcType=VARCHAR}, #{fastenerType,jdbcType=VARCHAR}, #{l,jdbcType=VARCHAR}, 
+      #{i,jdbcType=VARCHAR}, #{h,jdbcType=VARCHAR}, #{temperature,jdbcType=VARCHAR}, 
+      #{expansion1,jdbcType=VARCHAR}, #{expansion2,jdbcType=VARCHAR}, #{expansion3,jdbcType=VARCHAR}, 
+      #{q,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lcbw.pojo.RfidData">
+    insert into rfid_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rfidNum != null">
+        rfid_num,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="month != null">
+        month,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="hour != null">
+        hour,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="personNumber != null">
+        person_number,
+      </if>
+      <if test="mileage != null">
+        mileage,
+      </if>
+      <if test="trackBedType != null">
+        track_bed_type,
+      </if>
+      <if test="fastenerType != null">
+        fastener_type,
+      </if>
+      <if test="l != null">
+        L,
+      </if>
+      <if test="i != null">
+        I,
+      </if>
+      <if test="h != null">
+        H,
+      </if>
+      <if test="temperature != null">
+        temperature,
+      </if>
+      <if test="expansion1 != null">
+        expansion1,
+      </if>
+      <if test="expansion2 != null">
+        expansion2,
+      </if>
+      <if test="expansion3 != null">
+        expansion3,
+      </if>
+      <if test="q != null">
+        Q,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rfidNum != null">
+        #{rfidNum,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="hour != null">
+        #{hour,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="personNumber != null">
+        #{personNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null">
+        #{mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="trackBedType != null">
+        #{trackBedType,jdbcType=VARCHAR},
+      </if>
+      <if test="fastenerType != null">
+        #{fastenerType,jdbcType=VARCHAR},
+      </if>
+      <if test="l != null">
+        #{l,jdbcType=VARCHAR},
+      </if>
+      <if test="i != null">
+        #{i,jdbcType=VARCHAR},
+      </if>
+      <if test="h != null">
+        #{h,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null">
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion1 != null">
+        #{expansion1,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion2 != null">
+        #{expansion2,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion3 != null">
+        #{expansion3,jdbcType=VARCHAR},
+      </if>
+      <if test="q != null">
+        #{q,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lcbw.pojo.RfidDataExample" resultType="java.lang.Long">
+    select count(*) from rfid_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rfid_data
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rfidNum != null">
+        rfid_num = #{record.rfidNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.year != null">
+        year = #{record.year,jdbcType=VARCHAR},
+      </if>
+      <if test="record.month != null">
+        month = #{record.month,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null">
+        date = #{record.date,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hour != null">
+        hour = #{record.hour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null">
+        time = #{record.time,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personNumber != null">
+        person_number = #{record.personNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mileage != null">
+        mileage = #{record.mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trackBedType != null">
+        track_bed_type = #{record.trackBedType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fastenerType != null">
+        fastener_type = #{record.fastenerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.l != null">
+        L = #{record.l,jdbcType=VARCHAR},
+      </if>
+      <if test="record.i != null">
+        I = #{record.i,jdbcType=VARCHAR},
+      </if>
+      <if test="record.h != null">
+        H = #{record.h,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temperature != null">
+        temperature = #{record.temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expansion1 != null">
+        expansion1 = #{record.expansion1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expansion2 != null">
+        expansion2 = #{record.expansion2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expansion3 != null">
+        expansion3 = #{record.expansion3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.q != null">
+        Q = #{record.q,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update rfid_data
+    set id = #{record.id,jdbcType=BIGINT},
+      rfid_num = #{record.rfidNum,jdbcType=VARCHAR},
+      year = #{record.year,jdbcType=VARCHAR},
+      month = #{record.month,jdbcType=VARCHAR},
+      date = #{record.date,jdbcType=VARCHAR},
+      hour = #{record.hour,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR},
+      person_number = #{record.personNumber,jdbcType=VARCHAR},
+      mileage = #{record.mileage,jdbcType=VARCHAR},
+      track_bed_type = #{record.trackBedType,jdbcType=VARCHAR},
+      fastener_type = #{record.fastenerType,jdbcType=VARCHAR},
+      L = #{record.l,jdbcType=VARCHAR},
+      I = #{record.i,jdbcType=VARCHAR},
+      H = #{record.h,jdbcType=VARCHAR},
+      temperature = #{record.temperature,jdbcType=VARCHAR},
+      expansion1 = #{record.expansion1,jdbcType=VARCHAR},
+      expansion2 = #{record.expansion2,jdbcType=VARCHAR},
+      expansion3 = #{record.expansion3,jdbcType=VARCHAR},
+      Q = #{record.q,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rfid_data
+    set id = #{record.id,jdbcType=BIGINT},
+      rfid_num = #{record.rfidNum,jdbcType=VARCHAR},
+      year = #{record.year,jdbcType=VARCHAR},
+      month = #{record.month,jdbcType=VARCHAR},
+      date = #{record.date,jdbcType=VARCHAR},
+      hour = #{record.hour,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR},
+      person_number = #{record.personNumber,jdbcType=VARCHAR},
+      mileage = #{record.mileage,jdbcType=VARCHAR},
+      track_bed_type = #{record.trackBedType,jdbcType=VARCHAR},
+      fastener_type = #{record.fastenerType,jdbcType=VARCHAR},
+      L = #{record.l,jdbcType=VARCHAR},
+      I = #{record.i,jdbcType=VARCHAR},
+      H = #{record.h,jdbcType=VARCHAR},
+      temperature = #{record.temperature,jdbcType=VARCHAR},
+      expansion1 = #{record.expansion1,jdbcType=VARCHAR},
+      expansion2 = #{record.expansion2,jdbcType=VARCHAR},
+      expansion3 = #{record.expansion3,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lcbw.pojo.RfidData">
+    update rfid_data
+    <set>
+      <if test="rfidNum != null">
+        rfid_num = #{rfidNum,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="hour != null">
+        hour = #{hour,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="personNumber != null">
+        person_number = #{personNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null">
+        mileage = #{mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="trackBedType != null">
+        track_bed_type = #{trackBedType,jdbcType=VARCHAR},
+      </if>
+      <if test="fastenerType != null">
+        fastener_type = #{fastenerType,jdbcType=VARCHAR},
+      </if>
+      <if test="l != null">
+        L = #{l,jdbcType=VARCHAR},
+      </if>
+      <if test="i != null">
+        I = #{i,jdbcType=VARCHAR},
+      </if>
+      <if test="h != null">
+        H = #{h,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null">
+        temperature = #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion1 != null">
+        expansion1 = #{expansion1,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion2 != null">
+        expansion2 = #{expansion2,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion3 != null">
+        expansion3 = #{expansion3,jdbcType=VARCHAR},
+      </if>
+      <if test="q != null">
+        Q = #{q,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lcbw.pojo.RfidData">
+    update rfid_data
+    set rfid_num = #{rfidNum,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      hour = #{hour,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      person_number = #{personNumber,jdbcType=VARCHAR},
+      mileage = #{mileage,jdbcType=VARCHAR},
+      track_bed_type = #{trackBedType,jdbcType=VARCHAR},
+      fastener_type = #{fastenerType,jdbcType=VARCHAR},
+      L = #{l,jdbcType=VARCHAR},
+      I = #{i,jdbcType=VARCHAR},
+      H = #{h,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=VARCHAR},
+      expansion1 = #{expansion1,jdbcType=VARCHAR},
+      expansion2 = #{expansion2,jdbcType=VARCHAR},
+      expansion3 = #{expansion3,jdbcType=VARCHAR},
+      Q = #{q,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lcbw.pojo.RfidData">
+    update rfid_data
+    set rfid_num = #{rfidNum,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      hour = #{hour,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      person_number = #{personNumber,jdbcType=VARCHAR},
+      mileage = #{mileage,jdbcType=VARCHAR},
+      track_bed_type = #{trackBedType,jdbcType=VARCHAR},
+      fastener_type = #{fastenerType,jdbcType=VARCHAR},
+      L = #{l,jdbcType=VARCHAR},
+      I = #{i,jdbcType=VARCHAR},
+      H = #{h,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=VARCHAR},
+      expansion1 = #{expansion1,jdbcType=VARCHAR},
+      expansion2 = #{expansion2,jdbcType=VARCHAR},
+      expansion3 = #{expansion3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

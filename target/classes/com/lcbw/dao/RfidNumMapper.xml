@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcbw.dao.RfidNumMapper">
+  <resultMap id="BaseResultMap" type="com.lcbw.pojo.RfidNum">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rfid_num" jdbcType="VARCHAR" property="rfidNum" />
+    <result column="expansion1" jdbcType="VARCHAR" property="expansion1" />
+    <result column="expansion2" jdbcType="VARCHAR" property="expansion2" />
+    <result column="expansion3" jdbcType="VARCHAR" property="expansion3" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rfid_num, expansion1, expansion2, expansion3
+  </sql>
+  <select id="selectAllLabel" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    rfid_num
+  </select>
+  <select id="selectByExample" parameterType="com.lcbw.pojo.RfidNumExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rfid_num
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rfid_num
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from rfid_num
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lcbw.pojo.RfidNumExample">
+    delete from rfid_num
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lcbw.pojo.RfidNum">
+    insert into rfid_num (id, rfid_num, expansion1, 
+      expansion2, expansion3)
+    values (#{id,jdbcType=BIGINT}, #{rfidNum,jdbcType=VARCHAR}, #{expansion1,jdbcType=VARCHAR}, 
+      #{expansion2,jdbcType=VARCHAR}, #{expansion3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lcbw.pojo.RfidNum">
+    insert into rfid_num
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rfidNum != null">
+        rfid_num,
+      </if>
+      <if test="expansion1 != null">
+        expansion1,
+      </if>
+      <if test="expansion2 != null">
+        expansion2,
+      </if>
+      <if test="expansion3 != null">
+        expansion3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rfidNum != null">
+        #{rfidNum,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion1 != null">
+        #{expansion1,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion2 != null">
+        #{expansion2,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion3 != null">
+        #{expansion3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lcbw.pojo.RfidNumExample" resultType="java.lang.Long">
+    select count(*) from rfid_num
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rfid_num
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rfidNum != null">
+        rfid_num = #{record.rfidNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expansion1 != null">
+        expansion1 = #{record.expansion1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expansion2 != null">
+        expansion2 = #{record.expansion2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expansion3 != null">
+        expansion3 = #{record.expansion3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rfid_num
+    set id = #{record.id,jdbcType=BIGINT},
+      rfid_num = #{record.rfidNum,jdbcType=VARCHAR},
+      expansion1 = #{record.expansion1,jdbcType=VARCHAR},
+      expansion2 = #{record.expansion2,jdbcType=VARCHAR},
+      expansion3 = #{record.expansion3,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lcbw.pojo.RfidNum">
+    update rfid_num
+    <set>
+      <if test="rfidNum != null">
+        rfid_num = #{rfidNum,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion1 != null">
+        expansion1 = #{expansion1,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion2 != null">
+        expansion2 = #{expansion2,jdbcType=VARCHAR},
+      </if>
+      <if test="expansion3 != null">
+        expansion3 = #{expansion3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lcbw.pojo.RfidNum">
+    update rfid_num
+    set rfid_num = #{rfidNum,jdbcType=VARCHAR},
+      expansion1 = #{expansion1,jdbcType=VARCHAR},
+      expansion2 = #{expansion2,jdbcType=VARCHAR},
+      expansion3 = #{expansion3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
