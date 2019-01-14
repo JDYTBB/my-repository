@@ -1,192 +1,102 @@
 <%--
   Created by IntelliJ IDEA.
   User: JDY
-  Date: 2018-12-29
-  Time: 9:09
+  Date: 2019-01-04
+  Time: 17:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 %>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>数据信息</title>
-    <link href="<%=basePath%>/css/style.css" rel="stylesheet" type="text/css">
-    <%--<link href="<%=basePath%>/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">--%>
-    <%--<link href="<%=basePath%>/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">--%>
-    <%--<link href="<%=basePath%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">--%>
-
-    <script src="<%=basePath%>/js/jquery.js" type="text/javascript"></script>
-    <script type="text/javascript" src="<%=basePath%>/js/page-js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="<%=basePath%>/js/page-js/jquery.pagination.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $(".click").click(function(){
-                $(".tip").fadeIn(200);
-            });
-
-            $(".tiptop a").click(function(){
-                $(".tip").fadeOut(200);
-            });
-
-            $(".sure").click(function(){
-                $(".tip").fadeOut(100);
-            });
-
-            $(".cancel").click(function(){
-                $(".tip").fadeOut(100);
-            });
-        });
-    </script>
+    <title>标签信息</title>
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/stylesheets/fatstyle.css" />
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/stylesheets/manage.css" />
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/stylesheets/newresource.css">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/stylesheets/resource.css" />
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/stylesheets/printform.css" />
+    <script type="text/javascript" src="<%=basePath%>/js/echarts-js/echarts.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/js/jquery-3.2.1.min.js"></script>
 </head>
-
-
 <body>
+<div class="u-wrap resource">
+    <%--<div class="mainbackground nopadding mt15">
+        <div class="lxs-priDa" id="printReceipt">
+            <div class="lxs-priLi mb-30" name="printCenter">
+                <div class="lxs-priLi-ti">
+                    <h3 class="color-black">标题</h3>
+                </div>
 
-<div class="place">
-    <span>位置：</span>
-    <ul class="placeul">
-        <li><a href="#">首页</a></li>
-        <li><a href="#">数据表</a></li>
-        <li><a href="#">基本内容</a></li>
-    </ul>
-</div>
-
-<div class="rightinfo">
-
-    <div class="tools">
-        <ul class="toolbar">
-            <li class="click"><span><img src="<%=basePath%>/images/t01.png" /></span>添加</li>
-            <li class="click"><span><img src="<%=basePath%>/images/t02.png" /></span>修改</li>
-            <li><span><img src="<%=basePath%>/images/t03.png" /></span>删除</li>
-            <li><span><img src="<%=basePath%>/images/t04.png" /></span>统计</li>
-        </ul>
-        <ul class="toolbar1">
-            <li><span><img src="<%=basePath%>/images/t05.png" /></span>设置</li>
-        </ul>
+                <table class="lxs-priTab" >
+                    <tbody>
+                    <div id="main" style="width: 100%;height: 400px"></div>
+                    </tbody>
+                </table>
+            </div>
+            <div style='page-break-after: always;'></div>
+        </div>
+    </div>--%>
+    <div class="lxs-priLi-ti">
+        <h3 class="color-black">标题</h3>
     </div>
-
-
-    <table class="tablelist" id="user-list">
-        <thead>
-        <tr>
-            <th>编号<i class="sort"></i></th>
-            <th>用户名</th>
-            <th>用户类型</th>
-            <th>上传次数</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-
+    <table class="lxs-priTab" >
         <tbody>
-        <tr>
-            <td>0001</td>
-            <td>小张</td>
-            <td>管理员</td>
-            <td>0</td>
-            <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
-        </tr>
-
-        <tr>
-            <td>0002</td>
-            <td>小王</td>
-            <td>操作工</td>
-            <td>32</td>
-            <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink">删除</a></td>
-        </tr>
-
-        <tr>
-            <td>0003</td>
-            <td>小李</td>
-            <td>操作工</td>
-            <td>34</td>
-            <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink">删除</a></td>
-        </tr>
+        <div id="main" style="width: 100%;height: 400px"></div>
         </tbody>
     </table>
-
-
-    <div id="pagenation-id" class="pages pagination"></div>
-    <div class="pagin">
-        <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
-        <ul class="paginList">
-            <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-            <li class="paginItem"><a href="javascript:;">1</a></li>
-            <li class="paginItem current"><a href="javascript:;">2</a></li>
-            <li class="paginItem"><a href="javascript:;">3</a></li>
-            <li class="paginItem"><a href="javascript:;">4</a></li>
-            <li class="paginItem"><a href="javascript:;">5</a></li>
-            <li class="paginItem more"><a href="javascript:;">...</a></li>
-            <li class="paginItem"><a href="javascript:;">10</a></li>
-            <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
-        </ul>
-    </div>
-
-
-    <div class="tip">
-        <div class="tiptop"><span>提示信息</span><a></a></div>
-
-        <div class="tipinfo">
-            <span><img src="<%=basePath%>/images/ticon.png" /></span>
-            <div class="tipright">
-                <p>是否确认对信息的修改 ？</p>
-                <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
-            </div>
-        </div>
-
-        <div class="tipbtn">
-            <input name="" type="button"  class="sure" value="确定" />&nbsp;
-            <input name="" type="button"  class="cancel" value="取消" />
-        </div>
-    </div>
 </div>
 
-<%--<script type="text/javascript">
-    $('.tablelist tbody tr:odd').addClass('odd');
-    $(function () {
-        userPagenation(1);
+<script>
+    $(function(){
+        $('#fi_li').addClass('active');
     });
-    function userPagenation(index){
-        $.ajax({
-            url: "/user-data/user-info.do",
-            data: {page: index,pageSize:3},
-            type: "POST",
-            success: function (data) {
-                $("#user-list tr:gt(0)").remove();
-                $.each(data.data, function (i, item) {
-                    $("#user-list tbody").append("<tr><td>"
-                        + 'add1' + "</td><td>"
-                        + 'add2' + "</td><td>"
-                        + 'add3' + "</td><td>"
-                        + 'add4' + "</td><td>"
-                        +"<a data-id='"+item.id+"' class = 'deleteClick' href='#'>删除</a> <a data-id='"+item.id+"' class = 'modifyClick' href='#'>修改</a> "
-                        +"</td></tr>");
-                });
-                $("#pagenation-id").pagination(data.rowCount, {
-                    next_text: "下一页",
-                    prev_text: "上一页",
-                    current_page: data.pageNo - 1,
-                    num_display_entries: 8,
-                    items_per_page: data.pageSize,
-                    num_edge_entries: 1,
-                    callback: function (page, jq) {
-                        var pageNo = page + 1;
-                        userPagenation(pageNo);
-                    }
-                });
-            }
-        });
-    }
-</script>--%>
 
+    $(function () {
+        var myChart = echarts.init(document.getElementById('main'));
+
+        var colors = ['#5793f3', '#d14a61', '#675bba'];
+
+        option = {
+            color: colors,
+            tooltip: {trigger: 'axis'},
+            legend: {data:['轨距', '超高','轨面高程']},
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ["rfid0001", "rfid0002", "rfid0003", "rfid0004", "rfid0005", "rfid0006", "rfid0007", "rfid0008", "rfid0009", "rfid0010", "rfid0011", "rfid0012"]
+            },
+
+            yAxis: {type: 'value'},
+            series: [
+                {
+                    name:'轨距',
+                    type:'line',
+                    smooth: false,
+                    data: [2.6, 5.9, 9.0, 2.4, 8.7, 7.7, 1.6, 2.2, 8.7, 1.8, 3.0, 2.3]
+                },
+                {
+                    name:'超高',
+                    type:'line',
+                    smooth: false,
+                    data: [3.9, 5.9, 3.1, 1.7, 5.3, 6.2, 7.6, 2.6, 1.4, 9.4, 1.3, 0.7]
+                },
+                {
+                    name:'轨面高程',
+                    type:'line',
+                    smooth: false,
+                    data: [4.9, 6.9, 2.1, 8.7, 5.3, 7.2, 3.6, 6.6, 5.4, 8.4, 2.3, 1.7]
+                }
+            ]
+        };
+        myChart.setOption(option);
+    });
+</script>
 </body>
-
 </html>
-
 

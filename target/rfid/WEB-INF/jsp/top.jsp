@@ -23,15 +23,15 @@
 </head>
 
 <body style="background:url(<%=basePath%>/images/topbg.gif) repeat-x;">
-<div class="topleft">
-    <a href="<%=basePath%>/jsp/goLogin.do" target="_parent">系统首页</a>
-</div>
+<%--<div class="topleft">--%>
+    <%--<a href="<%=basePath%>/user/userLogin.do" target="_parent">系统首页</a>--%>
+<%--</div>--%>
 
 <!--中间放任务栏-->
 <ul class="nav">
-    <li><a href="<%=basePath%>/user-data/user-info.do" target="rightFrame" class="selected"><h2>人员信息</h2></a></li>
-    <li><a href="<%=basePath%>/lable-data/label-info.do" target="rightFrame"><h2>标签信息</h2></a></li>
-    <li><a href="<%=basePath%>/data-data/data-info.do"  target="rightFrame"><h2>数据信息</h2></a></li>
+    <li><a href="<%=basePath%>/user-data/user-info.do" target="rightFrame" class="selected"><br/><br/><h2>人员信息</h2></a></li>
+    <li><a href="<%=basePath%>/lable-data/label-info.do" target="rightFrame"><br/><br/><h2>标签信息</h2></a></li>
+    <li><a href="<%=basePath%>/data-data/data-info.do"  target="rightFrame"><br/><br/><h2>数据信息</h2></a></li>
 </ul>
 
 <!--右边放一些用户登录信息和帮助信息-->

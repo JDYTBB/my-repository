@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>巡检系统</title>
-    <%--<script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
         $(function(){
             login();
@@ -13,9 +13,9 @@
         function login(){
             window.location.href="${pageContext.request.contextPath}/jsp/goToLogin.do";
         }
-    </script>--%>
+    </script>
 </head>
 <body>
-<%request.getRequestDispatcher(request.getContextPath()+"/jsp/goToLogin").forward(request,response);%>
+<%--<%request.getRequestDispatcher(request.getContextPath()+"/jsp/goToLogin").forward(request,response);%>--%>
 </body>
 </html>

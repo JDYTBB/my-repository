@@ -33,8 +33,6 @@
                     }else{
                         $parent.addClass("open").find('.sub-menus').show();
                     }
-
-
                 }
             });
 
@@ -64,15 +62,15 @@
 
 <dl class="leftmenu">
     <dd>
+        <%-- 一级标题 --%>
         <div class="title">
-            <span><img src="<%=basePath%>/images/leftico01.png" /></span>KZX001段
+            <span><img src="<%=basePath%>/images/leftico01.png" /></span>华东区
         </div>
-
         <ul class="menuson">
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">***工务段</a>
+                    <a href="index.html" target="rightFrame">济南铁路局</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -85,7 +83,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="right.html" target="rightFrame">***工务段</a>
+                    <a href="right.html" target="rightFrame">上海铁路局</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -100,7 +98,7 @@
 
     <dd>
         <div class="title">
-            <span><img src="<%=basePath%>/images/leftico01.png" /></span>KZX002段
+            <span><img src="<%=basePath%>/images/leftico01.png" /></span>华南区
         </div>
         <ul class="menuson">
             <li>
@@ -132,7 +130,10 @@
     </dd>
 
 
-    <dd><div class="title"><span><img src="<%=basePath%>/images/leftico01.png" /></span>KZX003段</div>
+    <dd>
+        <div class="title">
+            <span><img src="<%=basePath%>/images/leftico01.png" /></span>华中区
+        </div>
         <ul class="menuson">
             <li>
                 <div class="header">
@@ -163,7 +164,7 @@
     </dd>
 
 
-    <dd><div class="title"><span><img src="<%=basePath%>/images/leftico01.png" /></span>KZX004段</div>
+    <dd><div class="title"><span><img src="<%=basePath%>/images/leftico01.png" /></span>华北区</div>
         <ul class="menuson">
             <li>
                 <div class="header">
@@ -192,6 +193,97 @@
             </li>
         </ul>
     </dd>
+
+    <dd><div class="title"><span><img src="<%=basePath%>/images/leftico01.png" /></span>西北区</div>
+        <ul class="menuson">
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="flow.html" target="rightFrame">***工务段</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">人员信息</a></li>
+                    <li><a href="javascript:;">标签信息</a></li>
+                    <li><a href="javascript:;">数据信息</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="flow.html" target="rightFrame">***工务段</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">人员信息</a></li>
+                    <li><a href="javascript:;">标签信息</a></li>
+                    <li><a href="javascript:;">数据信息</a></li>
+                </ul>
+            </li>
+        </ul>
+    </dd>
+
+    <dd><div class="title"><span><img src="<%=basePath%>/images/leftico01.png" /></span>西南区</div>
+        <ul class="menuson">
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="flow.html" target="rightFrame">***工务段</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">人员信息</a></li>
+                    <li><a href="javascript:;">标签信息</a></li>
+                    <li><a href="javascript:;">数据信息</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="flow.html" target="rightFrame">***工务段</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">人员信息</a></li>
+                    <li><a href="javascript:;">标签信息</a></li>
+                    <li><a href="javascript:;">数据信息</a></li>
+                </ul>
+            </li>
+        </ul>
+    </dd>
+
+    <dd><div class="title"><span><img src="<%=basePath%>/images/leftico01.png" /></span>东北区</div>
+        <ul class="menuson">
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="flow.html" target="rightFrame">***工务段</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">人员信息</a></li>
+                    <li><a href="javascript:;">标签信息</a></li>
+                    <li><a href="javascript:;">数据信息</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="flow.html" target="rightFrame">***工务段</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">人员信息</a></li>
+                    <li><a href="javascript:;">标签信息</a></li>
+                    <li><a href="javascript:;">数据信息</a></li>
+                </ul>
+            </li>
+        </ul>
+    </dd>
+
 </dl>
 
 </body>
